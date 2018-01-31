@@ -19,6 +19,8 @@ export class AlarmClockFormComponent implements OnInit {
   webradios: WebRadio[];
   alarmclocks: AlarmClock[];
   existingAlarmClock: boolean = true;
+  submitted: boolean = false;
+  ismeridian: boolean = false;
   timePicker: Date;
   @ViewChild(PopupComponent) popupComponent: PopupComponent;
 
