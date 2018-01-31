@@ -27,7 +27,7 @@ class CrontabManager(object):
         # get current crontab
         p = subprocess.Popen("crontab -l", stdout=subprocess.PIPE, shell=True)
         (output, err) = p.communicate()
-        mycron = str(output)
+        mycron = output.decode("utf-8")
         mycron = mycron.splitlines()
         logger.debug("Current crontab line: %s" % str(mycron))
         return mycron

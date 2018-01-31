@@ -8,7 +8,7 @@ E.g: python run_web_radio.py 12 20
 import inspect
 import os
 import sys
-import urllib2
+from urllib2 import urlopen
 import django
 from webapi.Utils.PlayerManager import CallbackPlayer, ThreadTimeout, PlayerManager
 
@@ -21,7 +21,7 @@ def is_url_valid(url):
     """
     try:
         print("Try to connect to the URL: %s" % url)
-        connection = urllib2.urlopen(url, timeout=5)
+        connection = urlopen(url, timeout=5)
         print("URL status code: %s " % connection.getcode())
         connection.close()
         return True
@@ -47,15 +47,15 @@ print "Id of the web radio to play: %s" % id_web_radio_to_play
 minute_before_auto_kill = None
 try:
     minute_before_auto_kill = sys.argv[2]
-    print "Auto kill the web radio in %s minutes" % minute_before_auto_kill
+    print("Auto kill the web radio in %s minutes" % minute_before_auto_kill)
 except IndexError:
-    print "No minutes for auto kill"
+    print("No minutes for auto kill")
 
 # get the real web radio object to play
 try:
     web_radio_to_play = WebRadio.objects.get(id=id_web_radio_to_play)
 except WebRadio.DoesNotExist:
-    print "The web radio id %s does not exist, cannot launch"
+    print("The web radio id %s does not exist, cannot launch")
     sys.exit()
 
 # get the current script path
@@ -68,7 +68,7 @@ backup_mp3_callback = None
 if backup_mp3_list is not None:
     if len(backup_mp3_list) == 1:
         backup_mp3_path = backup_mp3_list[0].backup_file.url
-        print "Path to the backup MP3: %s" % backup_mp3_path
+        print("Path to the backup MP3: %s" % backup_mp3_path)
         if backup_mp3_path is not None:
             backup_mp3_path = current_script_path + os.sep + backup_mp3_path
             backup_mp3_callback = CallbackPlayer(url=backup_mp3_path)

@@ -32,7 +32,7 @@ def add_job_in_crontab(alarm):
         line = "# "
         new_job = line + new_job
 
-    print "Crontab job line: %s" % new_job
+    print("Crontab job line: %s" % new_job)
     CrontabManager.add_job(new_job)
 
 
