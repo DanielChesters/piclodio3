@@ -1,56 +1,40 @@
-import os
-import subprocess
 import threading
+import gi
+gi.require_version("Gst", "1.0")
 from time import sleep
-
+from gi.repository import Gst, GObject
+Gst.init(None)
 
 class PlayerManager(object):
     """
-    Class to play music with mplayer
+    Class to play music with GStreamer
     """
-    MPLAYER_EXEC_PATH = "/usr/bin/mplayer"
+    PLAYER = Gst.ElementFactory.make("playbin", "player")
+    MAIN_LOOP = GObject.MainLoop()
 
     @classmethod
     def play(cls, url, blocking_thread=False):
-        # kill process if already running
+        # stop playing if already running
         if cls.is_started():
             cls.stop()
-        mplayer_exec_path = [cls.MPLAYER_EXEC_PATH]
-        mplayer_options = ['-slave', '-quiet']
-        mplayer_command = list()
-        mplayer_command.extend(mplayer_exec_path)
-        mplayer_command.extend(mplayer_options)
-
-        mplayer_command.extend([url])
-        print("Mplayer cmd: %s" % str(mplayer_command))
-
-        if blocking_thread:
-            # blocking thread
-            p = subprocess.Popen(mplayer_command, shell=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-            p.communicate()
-            # the following line will only be printed when the process mplayer will be killed
-            print("Mplayer stopped")
-        else:
-            fnull = open(os.devnull, 'w')
-            subprocess.Popen(mplayer_command, stdout=fnull, stderr=fnull)
+        cls.PLAYER.set_property("uri", url)
+        cls.PLAYER.set_state(Gst.State.PLAYING)
+        if blocking_thread :
+            cls.MAIN_LOOP.run()
 
     @classmethod
     def stop(cls):
         """
-        Kill mplayer process
+        Stop playing
         """
-        p = subprocess.Popen("killall mplayer", shell=True)
-        p.communicate()
+        cls.PLAYER.set_state(Gst.State.NULL)
+        if cls.MAIN_LOOP.is_running :
+            cls.MAIN_LOOP.quit()
 
     @classmethod
     def is_started(cls):
-        # check number of process
-        p = subprocess.Popen("pgrep mplayer", stdout=subprocess.PIPE, shell=True)
-        (output, err) = p.communicate()
-        if output == "":
-            return False
-        else:
-            return True
+        state = cls.PLAYER.get_state(Gst.CLOCK_TIME_NONE)
+        return state.state == Gst.State.PLAYING
 
 
 class ThreadTimeout(object):
