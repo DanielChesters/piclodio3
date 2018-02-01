@@ -58,7 +58,7 @@ export class HomepageComponent implements OnInit, OnDestroy {
 
   incrementDate() {
     this.clock.setSeconds(this.clock.getSeconds() + 1);
-    this.clockString = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
+    this.clockString = moment().format("dddd D MMMM YYYY, H:mm:ss");
   }
 
   ngOnDestroy() {
