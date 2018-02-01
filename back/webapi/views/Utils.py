@@ -1,5 +1,6 @@
 import inspect
 import os
+import sys
 
 from webapi.Utils.CrontabManager import CrontabManager
 
@@ -15,10 +16,15 @@ def add_job_in_crontab(alarm):
 
     run_script_path = get_root_path(current_script_path) + os.sep + "run_web_radio.py"
 
+    python_cmd = "python"
+    if sys.version_info >= (3, 0):
+        python_cmd += "3"
+
     # new_job: <minute> <hour> * * <day_of_week> <run_script_path> <webradio_id>
-    new_job = "%s %s * * %s python %s %s " % (alarm.minute,
+    new_job = "%s %s * * %s %s %s %s " % (alarm.minute,
                                               alarm.hour,
                                               day_of_week,
+                                              python_cmd,
                                               run_script_path,
                                               alarm.webradio.id)
     if alarm.auto_stop_minutes is not 0:
