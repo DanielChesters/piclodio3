@@ -8,7 +8,10 @@ E.g: python run_web_radio.py 12 20
 import inspect
 import os
 import sys
-from urllib2 import urlopen
+if sys.version_info >= (3, 0):
+    from urllib.request import urlopen
+else:
+    from urllib2 import urlopen
 import django
 from webapi.Utils.PlayerManager import CallbackPlayer, ThreadTimeout, PlayerManager
 
@@ -42,7 +45,7 @@ from webapi.models import WebRadio, BackupMusic
 
 # get the ID of the webradio to play from the argument
 id_web_radio_to_play = sys.argv[1]
-print "Id of the web radio to play: %s" % id_web_radio_to_play
+print("Id of the web radio to play: %s" % id_web_radio_to_play)
 # get the time in minute before auto kill
 minute_before_auto_kill = None
 try:
