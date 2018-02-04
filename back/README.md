@@ -12,22 +12,22 @@ Install packages
 ```bash
 sudo apt-get update
 sudo apt-get install apt-transport-https
-sudo apt-get install git python-dev mplayer libasound2-dev
+sudo apt-get install git python3-dev libasound2-dev python3-gst-1.0
 ```
 
 Install the last release of python pip
 ```bash
 wget https://bootstrap.pypa.io/get-pip.py
-sudo python get-pip.py
+sudo python3 get-pip.py
 ```
 
 Install python lib via pip
 ```bash
-sudo pip install django==1.10.4
-sudo pip install djangorestframework==3.5.3
-sudo pip install django-cors-headers==1.3.1
-sudo pip install gunicorn==19.6.0
-sudo pip install pyalsaaudio==0.8.2
+sudo pip3 install django==2.0.2
+sudo pip3 install djangorestframework==3.7.7
+sudo pip3 install django-cors-headers==2.1.0
+sudo pip3 install gunicorn==19.7.1
+sudo pip3 install pyalsaaudio==0.8.4
 ```
 
 Clone the project
@@ -40,7 +40,7 @@ git clone https://github.com/Sispheor/piclodio3.git
 ### manually with the integrated web server
 ```bash
 cd back
-python manage.py runserver 0.0.0.0:8000
+python3 manage.py runserver 0.0.0.0:8000
 ```
 
 ### Manually with Gunicorn
