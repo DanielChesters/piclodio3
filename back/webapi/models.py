@@ -27,7 +27,7 @@ class AlarmClock(models.Model):
     minute = models.IntegerField()
     is_active = models.BooleanField(default=False)
     auto_stop_minutes = models.IntegerField(default=0)
-    webradio = models.ForeignKey(WebRadio)
+    webradio = models.ForeignKey(WebRadio, on_delete=models.DO_NOTHING)
 
 
 class BackupMusic(models.Model):
