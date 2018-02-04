@@ -1,15 +1,15 @@
 # Piclodio frontend
 
-This part of the project is written with Angular JS 2 and  was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.30.
+This part of the project is written with Angular 2 and was generated with [angular-cli](https://github.com/angular/angular-cli)
 
 ## Installation
 
 ### Pre requisite
 
-Install nodejs 6.x
+Install nodejs 8.x
 ```bash
-curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
-sudo apt-get install -y nodejs
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+sudo apt install -y nodejs
 node --version
 ```
 Clone the project
