@@ -13,12 +13,13 @@ export class AlarmClockService {
 
   // GET /alarmclocks
   getAllAlarmClocks(): Observable <Array<AlarmClock>> {
-          return this.httpService.get<Array<AlarmClock>>(this.baseUrl + '/alarms/');
+     return this.httpService.get<Array<AlarmClock>>(this.baseUrl + '/alarms/');
   }
 
   // DELETE /alarms/:id
   deleteAlarmClockById(id: number): Observable < any > {
     console.log('call delete service, delete alarm id ' + id);
+
     return this.httpService.delete(this.baseUrl + '/alarms/' + id);
   }
 
@@ -30,6 +31,7 @@ export class AlarmClockService {
     const returnedAlarmClock = this.httpService.post<AlarmClock>(this.baseUrl + '/alarms/', alarmClock, {
         headers
       });
+
     return returnedAlarmClock;
   }
 
@@ -46,6 +48,7 @@ export class AlarmClockService {
     const returnedAlarmClock = this.httpService.put<AlarmClock>(this.baseUrl + '/alarms/' + id, body, {
             headers
         });
+
     return returnedAlarmClock;
   }
 

@@ -13,7 +13,7 @@ export class OptionService {
   constructor(private httpService: HttpClient) { }
 
   getVolume(): Observable <Volume> {
-    return this.httpService.get<Volume>(this.baseUrl + '/volume/');
+    return this.httpService.get<Volume>(`{{ this.baseUrl w}}/volume/`);
   }
 
   setVolume(volume: Volume): Observable < Volume > {
@@ -21,14 +21,15 @@ export class OptionService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    const newVolume = this.httpService.post<Volume>(this.baseUrl + '/volume/', body, {
+    const newVolume = this.httpService.post<Volume>(`{{ this.baseUrl }}/volume/`, body, {
         headers
       });
+
     return newVolume;
   }
 
   getBackup(): Observable <Array<Backup>> {
-    return this.httpService.get<Array<Backup>>(this.baseUrl + '/backup/');
+    return this.httpService.get<Array<Backup>>(`{{ this.baseUrl }}/backup/`);
   }
 
 }

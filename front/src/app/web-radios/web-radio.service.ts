@@ -29,12 +29,14 @@ export class WebRadioService {
     const returnedWebRadio = this.httpService.post<WebRadio>(this.baseUrl + '/webradio/', webradio, {
         headers
       });
+
     return returnedWebRadio;
   }
 
   // DELETE /webradios/:id
   deleteWebRadioById(id: number): Observable < any > {
     console.log('call delete service, delete webradio id ' + id);
+
     return this.httpService.delete(this.baseUrl + '/webradio/' + id);
   }
 
@@ -48,6 +50,7 @@ export class WebRadioService {
     const returnedWebRadio = this.httpService.put<WebRadio>(this.baseUrl + '/webradio/' + id, body, {
         headers
       });
+
     return returnedWebRadio;
   }
 }
