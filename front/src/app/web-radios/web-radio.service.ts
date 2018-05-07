@@ -1,5 +1,5 @@
 import { GlobalVariable } from './../globals';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { WebRadio } from './web-radio';

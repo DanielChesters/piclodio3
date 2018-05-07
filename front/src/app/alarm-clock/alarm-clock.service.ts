@@ -1,6 +1,6 @@
 import { GlobalVariable } from './../globals';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import {AlarmClock} from "./alarm-clock";
 import { Injectable } from '@angular/core';
 

@@ -3,7 +3,7 @@ import { CollapseModule } from 'ng2-bootstrap/collapse';
 import { OptionComponent } from './option/option.component';
 import { OptionService } from './option/option.service';
 import { PlayerService } from './player/player.service';
-import 'rxjs/add/operator/map';
+
 import { SystemDateService } from './homepage/systemdate.service';
 import {AlarmClockService} from "./alarm-clock/alarm-clock.service";
 import { BrowserModule } from '@angular/platform-browser';

@@ -1,3 +1,5 @@
+
+import {interval as observableInterval} from 'rxjs';
 import { AlarmClock } from '../alarm-clock/alarm-clock';
 import { AlarmClockService } from './../alarm-clock/alarm-clock.service';
 import { Player } from './../player/player';
@@ -50,8 +52,7 @@ export class HomepageComponent implements OnInit, OnDestroy {
   // subcribe return the target object
   setClockCallback(date: Date) {
     this.clock = date;
-    this.clockIncrementSubscription = Observable
-      .interval(1000)
+    this.clockIncrementSubscription = observableInterval(1000)
       .subscribe(this.incrementDate.bind(this));
 
   }

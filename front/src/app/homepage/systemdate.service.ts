@@ -1,7 +1,9 @@
+
+import {map} from 'rxjs/operators';
 import { GlobalVariable } from './../globals';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import * as url from 'url';
-import { Http, Response } from '@angular/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 
@@ -10,16 +12,15 @@ export class SystemDateService {
 
     baseUrl: string = GlobalVariable.BASE_API_URL;
 
-    constructor(private httpService: Http) {}
+    constructor(private httpService: HttpClient) {}
 
     // GET /alarmclocks
     getSystemDate(): Observable < Date > {
-        var datejsonObservable = this.httpService.get(this.baseUrl + "/systemdate/");
-        return this.dateJson(datejsonObservable);
+        return this.httpService.get<Date>(this.baseUrl + "/systemdate/");
     }
 
-    dateJson(datejsonObservable: Observable < Response > ): Observable < Date > {
-        var jsonDateString: Observable < string > = datejsonObservable.map((response: Response) => response.json());
-        return jsonDateString.map((date: string) => new Date(date));
-    }
+                /*dateJson(datejsonObservable: Observable<HttpResponse<string>> ): Observable < Date > {
+                var jsonDateString: Observable < string > = datejsonObservable.pipe(map((response: HttpResponse<string>) => response.json()));
+        return jsonDateString.pipe(map((date: string) => new Date(date)));
+    }*/
 }
