@@ -5,7 +5,7 @@ import {AlarmClockService} from '../alarm-clock.service';
 import {WebRadioService} from '../../web-radios/web-radio.service';
 import {WebRadio} from '../../web-radios/web-radio';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {Router, ActivatedRoute} from '@angular/router'
+import {ActivatedRoute, Router} from '@angular/router'
 import {Subscription } from 'rxjs';
 
 @Component({
@@ -16,8 +16,8 @@ import {Subscription } from 'rxjs';
 export class AlarmClockFormComponent implements OnInit {
 
   newAlarmClock: AlarmClock = new AlarmClock();
-  webradios: WebRadio[];
-  alarmclocks: AlarmClock[];
+  webradios: Array<WebRadio>;
+  alarmclocks: Array<AlarmClock>;
   existingAlarmClock = true;
   submitted = false;
   ismeridian = false;
@@ -25,15 +25,15 @@ export class AlarmClockFormComponent implements OnInit {
   @ViewChild(PopupComponent) popupComponent: PopupComponent;
 
   // list of availlable minutes & hours
-  minute_list: number[];
-  hour_list: number[];
-  max_auto_stop_minute: number[];
+  minute_list: Array<number>;
+  hour_list: Array<number>;
+  max_auto_stop_minute: Array<number>;
   private subscription: Subscription;
 
   constructor(private webRadioService: WebRadioService,
-    private alarmClockService: AlarmClockService,
-    private router: Router,
-    private activatedRoute: ActivatedRoute) {
+              private alarmClockService: AlarmClockService,
+              private router: Router,
+              private activatedRoute: ActivatedRoute) {
     this.minute_list = this.create_range(59);
     this.hour_list = this.create_range(23);
     this.max_auto_stop_minute = this.create_range(60);
@@ -44,7 +44,7 @@ export class AlarmClockFormComponent implements OnInit {
     // get the id in the URL
     this.subscription = this.activatedRoute.params.subscribe(
       (param: any) => {
-        let alarmClockId = param['id'];
+        const alarmClockId = param['id'];
         console.log(alarmClockId);
         if (!alarmClockId) {
           console.log('no id');
@@ -104,14 +104,14 @@ export class AlarmClockFormComponent implements OnInit {
 
   }
 
-  create_range(maxVal: number): number[] {
-    let x = [];
+  create_range(maxVal: number): Array<number> {
+    const x = [];
     let i = 0;
     while (x.push(i++) <= maxVal) {};
     return x;
   }
 
-  setWebRadios(webradios: WebRadio[]) {
+  setWebRadios(webradios: Array<WebRadio>) {
     console.log(webradios);
     this.webradios = webradios;
   }
@@ -127,10 +127,9 @@ export class AlarmClockFormComponent implements OnInit {
     if (this.newAlarmClock.monday || this.newAlarmClock.tuesday || this.newAlarmClock.wednesday || this.newAlarmClock.thursday ||
         this.newAlarmClock.friday || this.newAlarmClock.saturday || this.newAlarmClock.sunday) {
           console.log('day of week ok');
-      return true;
+          return true;
     }
     return false;
   }
-
 
 }

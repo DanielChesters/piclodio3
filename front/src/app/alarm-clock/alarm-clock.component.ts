@@ -2,7 +2,6 @@ import {AlarmClockService} from './alarm-clock.service';
 import { Component, OnInit } from '@angular/core';
 import { AlarmClock } from './alarm-clock';
 
-
 @Component({
   selector: 'app-alarm-clock',
   templateUrl: './alarm-clock.component.html',
@@ -10,7 +9,7 @@ import { AlarmClock } from './alarm-clock';
 })
 export class AlarmClockComponent implements OnInit {
 
-  alarmclocks: AlarmClock[] = [];
+  alarmclocks: Array<AlarmClock> = [];
 
   modalConfirmDeleteAlarmClockIsVisible: Boolean = false;
   message: String;
@@ -45,7 +44,7 @@ export class AlarmClockComponent implements OnInit {
     }
   }
 
-  setAlarmClocks(alarmclocks: AlarmClock[]) {
+  setAlarmClocks(alarmclocks: Array<AlarmClock>) {
     this.alarmclocks = alarmclocks;
   }
 

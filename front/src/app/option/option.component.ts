@@ -51,7 +51,7 @@ export class OptionComponent implements OnInit {
     // get the current backup file
     this.refreshBackup();
     // set CORS to *
-    this.uploader.onBeforeUploadItem = (item) => {
+    this.uploader.onBeforeUploadItem =item => {
       item.withCredentials = false;
     }
 
@@ -83,15 +83,15 @@ export class OptionComponent implements OnInit {
    * Bind the reveiced data to the view
    * The data contains a full path, the method will only keep the file name
    */
-  setBackup(backup: Backup[]) {
+  setBackup(backup: Array<Backup>) {
     console.log('Recevied backup: ');
     console.log(backup);
     if (typeof backup !== 'undefined' && backup.length > 0) {
       // the array is defined and has at least one element
       console.log(backup[0]);
       // we receive a complete path that contain the root path and the file name. let's keep only the file name
-      let tmpBackup = backup[0];
-      let onlyFileName = tmpBackup.backup_file.split('/')[1];
+      const tmpBackup = backup[0];
+      const onlyFileName = tmpBackup.backup_file.split('/')[1];
       tmpBackup.backup_file = onlyFileName;
       this.currentBackup = tmpBackup;
     }

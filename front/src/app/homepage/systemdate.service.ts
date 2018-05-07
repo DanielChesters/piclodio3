@@ -6,7 +6,6 @@ import * as url from 'url';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-
 @Injectable()
 export class SystemDateService {
 

@@ -12,8 +12,8 @@ export class AlarmClockService {
   constructor(private httpService: HttpClient) { }
 
   // GET /alarmclocks
-  getAllAlarmClocks(): Observable <AlarmClock[]> {
-          return this.httpService.get<AlarmClock[]>(this.baseUrl + '/alarms/');
+  getAllAlarmClocks(): Observable <Array<AlarmClock>> {
+          return this.httpService.get<Array<AlarmClock>>(this.baseUrl + '/alarms/');
   }
 
   // DELETE /alarms/:id
@@ -24,11 +24,11 @@ export class AlarmClockService {
 
   // POST /alarms/new
   addAlarmClock(alarmClock: AlarmClock): Observable <AlarmClock> {
-    let headers = new HttpHeaders({
+    const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-          let returnedAlarmClock = this.httpService.post<AlarmClock>(this.baseUrl + '/alarms/', alarmClock, {
-        headers: headers
+    const returnedAlarmClock = this.httpService.post<AlarmClock>(this.baseUrl + '/alarms/', alarmClock, {
+        headers
       });
     return returnedAlarmClock;
   }
@@ -39,15 +39,14 @@ export class AlarmClockService {
   }
 
   updateAlarmClockById(id: number, values: Object = {}): Observable <AlarmClock> {
-    let body = JSON.stringify(values); // Stringify payload
-    let headers = new HttpHeaders({
+    const body = JSON.stringify(values); // Stringify payload
+    const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-        let returnedAlarmClock = this.httpService.put<AlarmClock>(this.baseUrl + '/alarms/' + id, body, {
-            headers: headers
+    const returnedAlarmClock = this.httpService.put<AlarmClock>(this.baseUrl + '/alarms/' + id, body, {
+            headers
         });
     return returnedAlarmClock;
   }
-
 
 }

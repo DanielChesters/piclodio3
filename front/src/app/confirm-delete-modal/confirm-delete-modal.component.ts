@@ -1,5 +1,5 @@
 import {WebRadio} from '../web-radios/web-radio';
-import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-confirm-delete-modal',
@@ -28,7 +28,5 @@ export class ConfirmDeleteModalComponent {
     this.onConfirm.emit(true);
 
   }
-
-
 
 }

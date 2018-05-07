@@ -14,7 +14,7 @@ import { WebRadio } from './web-radio';
 })
 export class WebRadiosComponent implements OnInit {
 
-  webradios: WebRadio[] = [];
+  webradios: Array<WebRadio> = [];
   webRadioToDelete: WebRadio;
   modalConfirmDeleteWebRadioIsVisible: Boolean = false;
   message: String;
@@ -46,7 +46,7 @@ export class WebRadiosComponent implements OnInit {
     }
   }
 
-  setWebRadios(webradios: WebRadio[]) {
+  setWebRadios(webradios: Array<WebRadio>) {
     console.log(webradios);
     this.webradios = webradios;
   }
@@ -58,7 +58,7 @@ export class WebRadiosComponent implements OnInit {
 
   playWebRadio(webradio: WebRadio) {
     console.log('Play web radio id ' + webradio.id);
-    let player = new Player();
+    const player = new Player();
     player.status = 'on';
     player.webradio = webradio.id;
     this.playerService.updatePlayer(player).subscribe(
@@ -69,6 +69,5 @@ export class WebRadiosComponent implements OnInit {
       );
 
   }
-
 
 }

@@ -37,7 +37,7 @@ import { FileUploadModule } from 'ng2-file-upload';
     AlarmClockFormComponent,
     ConfirmDeleteModalComponent,
     OptionComponent,
-    PopupComponent,
+    PopupComponent
   ],
   imports: [
     CollapseModule.forRoot(),

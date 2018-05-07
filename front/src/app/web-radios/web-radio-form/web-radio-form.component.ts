@@ -2,7 +2,7 @@ import { NoSwitchCaseFallThroughWalker } from 'tslint/lib/rules/noSwitchCaseFall
 import { Component, OnInit } from '@angular/core';
 import { WebRadioService } from '../web-radio.service';
 import { WebRadio } from '../web-radio';
-import {Router, ActivatedRoute} from '@angular/router'
+import {ActivatedRoute, Router} from '@angular/router'
 import {Subscription } from 'rxjs';
 
 @Component({
@@ -26,7 +26,7 @@ export class WebRadioFormComponent implements OnInit {
     // get the id in the URL
     this.subscription = this.activatedRoute.params.subscribe(
       (param: any) => {
-        let webradioId = param['id'];
+        const webradioId = param['id'];
         console.log(webradioId);
         if (!webradioId) {
           console.log('no id');

@@ -12,7 +12,6 @@ import { WebRadioService } from '../web-radios/web-radio.service';
 import { Observable, Subscription } from 'rxjs/Rx';
 import * as moment from 'moment';
 
-
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
@@ -21,19 +20,18 @@ import * as moment from 'moment';
 export class HomepageComponent implements OnInit, OnDestroy {
   clock: Date;
   clockString: string;
-  active_webradios: any[];
-  active_alarms: AlarmClock[];
-  all_webradios: any[];
+  active_webradios: Array<any>;
+  active_alarms: Array<AlarmClock>;
+  all_webradios: Array<any>;
   systemDateSubscribption: Subscription;
   clockIncrementSubscription: Subscription;
   player: Player;
   playerLoaded = false;
 
   constructor(private webRadioService: WebRadioService,
-    private systemDateService: SystemDateService,
-    private playerService: PlayerService,
-    private alarmClockService: AlarmClockService) {
-
+              private systemDateService: SystemDateService,
+              private playerService: PlayerService,
+              private alarmClockService: AlarmClockService) {
 
   }
 
@@ -73,7 +71,7 @@ export class HomepageComponent implements OnInit, OnDestroy {
   /**
    * Filter the received list of webradios to keep only the active one (is_default)
    */
-  filterDefaultWebRadio(webradios: WebRadio[]) {
+  filterDefaultWebRadio(webradios: Array<WebRadio>) {
     this.all_webradios = webradios;
     console.log(webradios);
     this.active_webradios = this.all_webradios.filter(
@@ -96,7 +94,7 @@ export class HomepageComponent implements OnInit, OnDestroy {
     this.playerService.updatePlayer(this.player).subscribe(this.setPlayerStatus.bind(this));
   }
 
-  setActiveAlarmClocks(alarmclocks: AlarmClock[]) {
+  setActiveAlarmClocks(alarmclocks: Array<AlarmClock>) {
     this.active_alarms = alarmclocks.filter(
       alarms => alarms.is_active === true
     )

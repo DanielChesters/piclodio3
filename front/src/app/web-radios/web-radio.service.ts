@@ -1,6 +1,6 @@
 import { GlobalVariable } from './../globals';
 import { Observable } from 'rxjs';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { WebRadio } from './web-radio';
 
@@ -12,8 +12,8 @@ export class WebRadioService {
   constructor(private httpService: HttpClient) {}
 
   // GET /webradios
-  getAllWebRadios(): Observable < WebRadio[] > {
-    return this.httpService.get<WebRadio[]>(this.baseUrl + '/webradio/');
+  getAllWebRadios(): Observable < Array<WebRadio> > {
+    return this.httpService.get<Array<WebRadio>>(this.baseUrl + '/webradio/');
   }
 
   // GET /webradios/:id
@@ -23,11 +23,11 @@ export class WebRadioService {
 
   // POST /webradios
   addWebRadio(webradio: WebRadio): Observable < WebRadio > {
-    let headers = new HttpHeaders({
+    const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-          let returnedWebRadio = this.httpService.post<WebRadio>(this.baseUrl + '/webradio/', webradio, {
-        headers: headers
+    const returnedWebRadio = this.httpService.post<WebRadio>(this.baseUrl + '/webradio/', webradio, {
+        headers
       });
     return returnedWebRadio;
   }
@@ -41,12 +41,12 @@ export class WebRadioService {
   //  PUT /todos/:id
   updateWebRadioById(id: number, values: Object = {}): Observable < WebRadio > {
 
-    let body = JSON.stringify(values); // Stringify payload
-    let headers = new HttpHeaders({
+    const body = JSON.stringify(values); // Stringify payload
+    const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-          let returnedWebRadio = this.httpService.put<WebRadio>(this.baseUrl + '/webradio/' + id, body, {
-        headers: headers
+    const returnedWebRadio = this.httpService.put<WebRadio>(this.baseUrl + '/webradio/' + id, body, {
+        headers
       });
     return returnedWebRadio;
   }

@@ -20,7 +20,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let alarmclock of alarmclocks">
-          <td class="col-md-1 text-center">{{alarmclock.name}}</td>
+          <td class="col-md-1 text-center">{{ alarmclock.name }}</td>
           <td class="col-md-2 text-center">
             <div class="col-xs-1"><span class="text-{{ alarmclock.monday ? 'success' : 'muted' }}">Mo</span></div>
             <div class="col-xs-1"><span class="text-{{ alarmclock.tuesday ? 'success' : 'muted' }}">Tu</span></div>
@@ -31,8 +31,8 @@
             <div class="col-xs-1"><span class="text-{{ alarmclock.sunday ? 'success' : 'muted' }}">Su</span></div>
 
           </td>
-          <td class="col-md-1 text-center">{{ alarmclock.hour < 10 ? '0' : '' }}{{alarmclock.hour}}:{{ alarmclock.minute < 10 ? '0' : '' }}{{alarmclock.minute}}</td>
-          <td class="col-md-1 text-center">{{alarmclock.auto_stop_minutes}}</td>
+          <td class="col-md-1 text-center">{{ alarmclock.hour < 10 ? '0' : '' }}{{ alarmclock.hour }}:{{ alarmclock.minute < 10 ? '0' : '' }}{{ alarmclock.minute }}</td>
+          <td class="col-md-1 text-center">{{ alarmclock.auto_stop_minutes }}</td>
           <td class="col-md-1 text-center">
             <a [routerLink]="['/alarms', alarmclock.id]" type="button" class="btn btn-default btn-sm">
               <span class="glyphicon glyphicon-edit"></span>

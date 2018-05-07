@@ -22,8 +22,8 @@ export class PopupComponent implements OnInit {
    */
   public add(type: string, msg: string): void {
     this.alerts.push({
-      type: type,
-      msg: msg,
+      type,
+      msg,
       timeout: 5000
     });
   }

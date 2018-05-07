@@ -16,20 +16,19 @@ export class OptionService {
     return this.httpService.get<Volume>(this.baseUrl + '/volume/');
   }
 
-
   setVolume(volume: Volume): Observable < Volume > {
-    let body = JSON.stringify(volume); // Stringify payload
-    let headers = new HttpHeaders({
+    const body = JSON.stringify(volume); // Stringify payload
+    const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-          let newVolume = this.httpService.post<Volume>(this.baseUrl + '/volume/', body, {
-        headers: headers
+    const newVolume = this.httpService.post<Volume>(this.baseUrl + '/volume/', body, {
+        headers
       });
     return newVolume;
   }
 
-  getBackup(): Observable <Backup[]> {
-    return this.httpService.get<Backup[]>(this.baseUrl + '/backup/');
+  getBackup(): Observable <Array<Backup>> {
+    return this.httpService.get<Array<Backup>>(this.baseUrl + '/backup/');
   }
 
 }

@@ -17,12 +17,12 @@ export class PlayerService {
   }
 
   updatePlayer(player: Player): Observable < Player > {
-    let body = JSON.stringify(player); // Stringify payload
-    let headers = new HttpHeaders({
+    const body = JSON.stringify(player); // Stringify payload
+    const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-          let returnedPlayer = this.httpService.post<Player>(this.baseUrl + '/player/', body, {
-        headers: headers
+    const returnedPlayer = this.httpService.post<Player>(this.baseUrl + '/player/', body, {
+        headers
       });
     return returnedPlayer;
   }

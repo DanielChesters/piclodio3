@@ -51,7 +51,7 @@
       <div class="col-sm-10">
 
         <select class="form-control" id="auto_stop_minutes" required [(ngModel)]="newAlarmClock.auto_stop_minutes" name="auto_stop_minutes">
-          <option *ngFor="let minute of max_auto_stop_minute" [ngValue]="minute" >{{minute}}</option>
+          <option *ngFor="let minute of max_auto_stop_minute" [ngValue]="minute" >{{ minute }}</option>
         </select>
       </div>
     </div>
@@ -59,7 +59,7 @@
       <label for="webradio" class="col-sm-2 control-label">Web radio</label>
       <div class="col-sm-10">
           <select class="form-control" id="webradio" required [(ngModel)]="newAlarmClock.webradio" name="webradio">
-            <option *ngFor="let webradio of webradios" [ngValue]="webradio.id" >{{webradio.name}}</option>
+            <option *ngFor="let webradio of webradios" [ngValue]="webradio.id" >{{ webradio.name }}</option>
           </select>
       </div>
     </div>
