@@ -1,7 +1,7 @@
 import { Player } from './player';
 import { WebRadio } from './../web-radios/web-radio';
 import { Observable } from 'rxjs/Observable';
-import { Http, Response, Headers } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { GlobalVariable } from './../globals';
 import { Injectable } from '@angular/core';
 
@@ -10,23 +10,20 @@ export class PlayerService {
 
   baseUrl: string = GlobalVariable.BASE_API_URL;
 
-  constructor(private httpService: Http) {}
+  constructor(private httpService: HttpClient) {}
 
   getPlayerStatus(): Observable < Player > {
-    var player = this.httpService.get(this.baseUrl + "/player/")
-      .map((res: Response) => res.json())
-    return player;
+    return this.httpService.get<Player>(this.baseUrl + "/player/");
   }
 
   updatePlayer(player: Player): Observable < Player > {
     let body = JSON.stringify(player); // Stringify payload
-    let headers = new Headers({
+    let headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    var returnedPlayer = this.httpService.post(this.baseUrl + "/player/", body, {
+          var returnedPlayer = this.httpService.post<Player>(this.baseUrl + "/player/", body, {
         headers: headers
-      })
-      .map((res: Response) => res.json())
+      });
     return returnedPlayer;
   }
 

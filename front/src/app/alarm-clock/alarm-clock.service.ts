@@ -1,5 +1,5 @@
 import { GlobalVariable } from './../globals';
-import { Http, Response, Headers } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import {AlarmClock} from "./alarm-clock";
 import { Injectable } from '@angular/core';
@@ -9,51 +9,43 @@ export class AlarmClockService {
   
   baseUrl: string = GlobalVariable.BASE_API_URL;
 
-  constructor(private httpService: Http) { }
+  constructor(private httpService: HttpClient) { }
 
   // GET /alarmclocks
   getAllAlarmClocks(): Observable <AlarmClock[]> {
-    var alarmClocks = this.httpService.get(this.baseUrl + "/alarms/")      
-      .map((res: Response) => res.json())    
-    return alarmClocks;
+          return this.httpService.get<AlarmClock[]>(this.baseUrl + "/alarms/");      
   }
 
   // DELETE /alarms/:id
   deleteAlarmClockById(id: number): Observable < any > {
     console.log("call delete service, delete alarm id " + id);
-    return this.httpService.delete(this.baseUrl + "/alarms/" + id)
-      .map((res: Response) => res.json());
+    return this.httpService.delete(this.baseUrl + "/alarms/" + id);
   }
 
   // POST /alarms/new
   addAlarmClock(alarmClock: AlarmClock): Observable <AlarmClock> {
-    let body = JSON.stringify(alarmClock); // Stringify payload
-    let headers = new Headers({
+    let headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    var returnedAlarmClock = this.httpService.post(this.baseUrl + "/alarms/", body, {
+          var returnedAlarmClock = this.httpService.post<AlarmClock>(this.baseUrl + "/alarms/", alarmClock, {
         headers: headers
-      })
-      .map((res: Response) => res.json())
+      });
     return returnedAlarmClock;
   }
 
   // GET /alarms/:id
   getAlarmClockById(id: number): Observable <AlarmClock> {
-    var returnedAlarmClock = this.httpService.get(this.baseUrl + "/alarms/" + id)      
-      .map((res: Response) => res.json())
-    return returnedAlarmClock;
+          return this.httpService.get<AlarmClock>(this.baseUrl + "/alarms/" + id); 
   }
 
   updateAlarmClockById(id: number, values: Object = {}): Observable <AlarmClock> {        
     let body = JSON.stringify(values); // Stringify payload
-    let headers = new Headers({
+    let headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    var returnedAlarmClock = this.httpService.put(this.baseUrl + "/alarms/" + id, body, {
-        headers: headers
-      })
-      .map((res: Response) => res.json())
+        var returnedAlarmClock = this.httpService.put<AlarmClock>(this.baseUrl + "/alarms/" + id, body, {
+            headers: headers
+        });
     return returnedAlarmClock;
   }
 
