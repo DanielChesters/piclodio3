@@ -13,7 +13,7 @@ export class OptionService {
   constructor(private httpService: HttpClient) { }
 
   getVolume(): Observable <Volume> {
-    return this.httpService.get<Volume>(this.baseUrl + "/volume/");
+    return this.httpService.get<Volume>(this.baseUrl + '/volume/');
   }
 
 
@@ -22,14 +22,14 @@ export class OptionService {
     let headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-          var newVolume = this.httpService.post<Volume>(this.baseUrl + "/volume/", body, {
+          let newVolume = this.httpService.post<Volume>(this.baseUrl + '/volume/', body, {
         headers: headers
       });
     return newVolume;
   }
 
   getBackup(): Observable <Backup[]> {
-    return this.httpService.get<Backup[]>(this.baseUrl + "/backup/");
+    return this.httpService.get<Backup[]>(this.baseUrl + '/backup/');
   }
 
 }

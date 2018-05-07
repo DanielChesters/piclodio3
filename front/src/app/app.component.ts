@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 
 })
 export class AppComponent {
-  public isCollapsed: boolean = true;
+  public isCollapsed = true;
 
 }
 

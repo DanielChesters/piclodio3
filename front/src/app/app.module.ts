@@ -5,7 +5,7 @@ import { OptionService } from './option/option.service';
 import { PlayerService } from './player/player.service';
 
 import { SystemDateService } from './homepage/systemdate.service';
-import {AlarmClockService} from "./alarm-clock/alarm-clock.service";
+import {AlarmClockService} from './alarm-clock/alarm-clock.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';

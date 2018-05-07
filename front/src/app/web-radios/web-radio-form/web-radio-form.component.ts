@@ -29,11 +29,11 @@ export class WebRadioFormComponent implements OnInit {
         let webradioId = param['id'];
         console.log(webradioId);
         if (!webradioId) {
-          console.log("no id");
+          console.log('no id');
           this.existingWebRadio = false;
           return
         } else {
-          console.log("get an id");
+          console.log('get an id');
           // we have an ID, load the object from it
           this.webRadioService.getWebRadioById(webradioId).subscribe(newWebradio => this.newWebradio = newWebradio,
             error => console.error('Error: ' + error),
@@ -45,28 +45,28 @@ export class WebRadioFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("web-radio form: onSubmit clicked")
-    // check if the id alrady exist    
+    console.log('web-radio form: onSubmit clicked')
+    // check if the id alrady exist
     if (this.existingWebRadio) {
-      // let webRadioToUpdate = this.webRadioService.getWebRadioById(this.newWebradio.id).toPromise()      
-      console.log("web-radio form: webradio with id "+ this.newWebradio.id +" already exist. Call update service");
+      // let webRadioToUpdate = this.webRadioService.getWebRadioById(this.newWebradio.id).toPromise()
+      console.log('web-radio form: webradio with id ' + this.newWebradio.id + ' already exist. Call update service');
       this.webRadioService.updateWebRadioById(this.newWebradio.id, this.newWebradio).subscribe(
-        success => {          
-          this.router.navigate(["webradios"]);
+        success => {
+          this.router.navigate(['webradios']);
         },
-        error => console.log("Error "+ error)
+        error => console.log('Error ' + error)
       );
     } else {
-      console.log("Create new web radio");
+      console.log('Create new web radio');
       this.webRadioService.addWebRadio(this.newWebradio).subscribe(
-        success => {          
-          this.router.navigate(["webradios"]);
+        success => {
+          this.router.navigate(['webradios']);
         },
-        error => console.log("Error "+ error)
+        error => console.log('Error ' + error)
       );
-      
+
     }
-    
+
   }
 
 }

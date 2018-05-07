@@ -1,4 +1,4 @@
-import {AlarmClockService} from "./alarm-clock.service";
+import {AlarmClockService} from './alarm-clock.service';
 import { Component, OnInit } from '@angular/core';
 import { AlarmClock } from './alarm-clock';
 
@@ -21,53 +21,53 @@ export class AlarmClockComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.refreshAlarmClockList();        
+    this.refreshAlarmClockList();
   }
 
-  deleteAlarmClock(alarmclock){
+  deleteAlarmClock(alarmclock) {
     // console.log(alarmclock)
     this.alarmClockService.deleteAlarmClockById(alarmclock.id).subscribe(success => this.refreshAlarmClockList(),
-      error => console.log("error: " + error));
+      error => console.log('error: ' + error));
 
   }
 
-  confirmDeleteAlarmClock(alarmclock: AlarmClock){
-      console.log("confirmDeleteAlarmClock clicked");
+  confirmDeleteAlarmClock(alarmclock: AlarmClock) {
+      console.log('confirmDeleteAlarmClock clicked');
       this.modalConfirmDeleteAlarmClockIsVisible = true;
       this.alarmClockToDelete = alarmclock;
-      this.message = "Are you sure you want to delete the alarm \"" + this.alarmClockToDelete.name + "\""
+      this.message = 'Are you sure you want to delete the alarm "' + this.alarmClockToDelete.name + '"'
   }
 
   onConfirm(agreed: boolean) {
     this.modalConfirmDeleteAlarmClockIsVisible = false;
-    if (agreed){
+    if (agreed) {
       this.deleteAlarmClock(this.alarmClockToDelete);
     }
   }
 
-  setAlarmClocks(alarmclocks: AlarmClock[]){
+  setAlarmClocks(alarmclocks: AlarmClock[]) {
     this.alarmclocks = alarmclocks;
   }
 
-  refreshAlarmClockList(){
+  refreshAlarmClockList() {
       this.alarmClockService.getAllAlarmClocks().subscribe(this.setAlarmClocks.bind(this));
   }
 
-  /** 
+  /**
    * Switch the status of the target AlarmClock. If the alarm is active, then switch to inactive and vice versa
-   * */  
-  switchActiveAlarmClock(alarmclock: AlarmClock){
-    if (alarmclock.is_active){
+   * */
+  switchActiveAlarmClock(alarmclock: AlarmClock) {
+    if (alarmclock.is_active) {
       alarmclock.is_active = false
-    }else{
+    } else {
        alarmclock.is_active = true
     }
     // update the AlarmClock
     this.alarmClockService.updateAlarmClockById(alarmclock.id, alarmclock).subscribe(
-        success => {          
+        success => {
           this.refreshAlarmClockList();
         },
-        error => console.log("Error "+ error)
+        error => console.log('Error ' + error)
       );
   }
 

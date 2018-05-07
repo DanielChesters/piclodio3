@@ -27,7 +27,7 @@ export class HomepageComponent implements OnInit, OnDestroy {
   systemDateSubscribption: Subscription;
   clockIncrementSubscription: Subscription;
   player: Player;
-  playerLoaded: boolean = false;
+  playerLoaded = false;
 
   constructor(private webRadioService: WebRadioService,
     private systemDateService: SystemDateService,
@@ -59,7 +59,7 @@ export class HomepageComponent implements OnInit, OnDestroy {
 
   incrementDate() {
     this.clock.setSeconds(this.clock.getSeconds() + 1);
-    this.clockString = moment().format("dddd D MMMM YYYY, H:mm:ss");
+    this.clockString = moment().format('dddd D MMMM YYYY, H:mm:ss');
   }
 
   ngOnDestroy() {
@@ -81,22 +81,22 @@ export class HomepageComponent implements OnInit, OnDestroy {
     )
   }
 
-  setPlayerStatus(player: Player){
-    console.log("Player: " + player);
+  setPlayerStatus(player: Player) {
+    console.log('Player: ' + player);
     this.player = player;
     this.playerLoaded = true;
   }
 
-  switchPlayerStatus(){
-    if (this.player.status == "on"){
-        this.player.status = "off";
-    }else{
-      this.player.status = "on";
+  switchPlayerStatus() {
+    if (this.player.status == 'on') {
+        this.player.status = 'off';
+    } else {
+      this.player.status = 'on';
     }
     this.playerService.updatePlayer(this.player).subscribe(this.setPlayerStatus.bind(this));
   }
 
-  setActiveAlarmClocks(alarmclocks: AlarmClock[]){
+  setActiveAlarmClocks(alarmclocks: AlarmClock[]) {
     this.active_alarms = alarmclocks.filter(
       alarms => alarms.is_active === true
     )

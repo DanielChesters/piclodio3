@@ -26,17 +26,17 @@ export class WebRadiosComponent implements OnInit {
   }
 
   deleteWebRadio(webRadioToDelete: WebRadio) {
-    console.log("Deleting" + webRadioToDelete);
+    console.log('Deleting' + webRadioToDelete);
     this.webRadioService.deleteWebRadioById(webRadioToDelete.id).subscribe(success => this.refreshWebRadioList(),
-      error => console.log("error: " + error))
+      error => console.log('error: ' + error))
 
   }
 
   confirmDeleteWebRadio(webradio: WebRadio) {
-    console.log("confirmDeleteWebRadio clicked");
+    console.log('confirmDeleteWebRadio clicked');
     this.modalConfirmDeleteWebRadioIsVisible = true;
     this.webRadioToDelete = webradio;
-    this.message = "Are you sure you want to delete " + this.webRadioToDelete.name
+    this.message = 'Are you sure you want to delete ' + this.webRadioToDelete.name
   }
 
   onConfirm(agreed: boolean) {
@@ -52,20 +52,20 @@ export class WebRadiosComponent implements OnInit {
   }
 
   refreshWebRadioList() {
-    console.log("Refresh the web radio list");
+    console.log('Refresh the web radio list');
     this.webRadioService.getAllWebRadios().subscribe(this.setWebRadios.bind(this));
   }
 
   playWebRadio(webradio: WebRadio) {
-    console.log("Play web radio id " + webradio.id);
+    console.log('Play web radio id ' + webradio.id);
     let player = new Player();
-    player.status = "on";
+    player.status = 'on';
     player.webradio = webradio.id;
     this.playerService.updatePlayer(player).subscribe(
-        success => {          
-          this.router.navigate(["homepage"]);
+        success => {
+          this.router.navigate(['homepage']);
         },
-        error => console.log("Error "+ error)
+        error => console.log('Error ' + error)
       );
 
   }

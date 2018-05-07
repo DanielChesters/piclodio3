@@ -1,9 +1,9 @@
 import { PopupComponent } from './../../popup/popup.component';
 import { error } from 'util';
 import { AlarmClock } from './../alarm-clock';
-import {AlarmClockService} from "../alarm-clock.service";
-import {WebRadioService} from "../../web-radios/web-radio.service";
-import {WebRadio} from "../../web-radios/web-radio";
+import {AlarmClockService} from '../alarm-clock.service';
+import {WebRadioService} from '../../web-radios/web-radio.service';
+import {WebRadio} from '../../web-radios/web-radio';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router'
 import {Subscription } from 'rxjs';
@@ -18,9 +18,9 @@ export class AlarmClockFormComponent implements OnInit {
   newAlarmClock: AlarmClock = new AlarmClock();
   webradios: WebRadio[];
   alarmclocks: AlarmClock[];
-  existingAlarmClock: boolean = true;
-  submitted: boolean = false;
-  ismeridian: boolean = false;
+  existingAlarmClock = true;
+  submitted = false;
+  ismeridian = false;
   timePicker: Date;
   @ViewChild(PopupComponent) popupComponent: PopupComponent;
 
@@ -47,13 +47,13 @@ export class AlarmClockFormComponent implements OnInit {
         let alarmClockId = param['id'];
         console.log(alarmClockId);
         if (!alarmClockId) {
-          console.log("no id");
+          console.log('no id');
           this.existingAlarmClock = false;
-          this.timePicker= new Date();
+          this.timePicker = new Date();
           this.newAlarmClock.auto_stop_minutes = 0;
           return
         } else {
-          console.log("get an id");
+          console.log('get an id');
           // we have an ID, load the object from it
           this.alarmClockService.getAlarmClockById(alarmClockId).subscribe(
             this.setExistingAlarmClock.bind(this),
@@ -67,20 +67,20 @@ export class AlarmClockFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("alarms form: onSubmit clicked")
+    console.log('alarms form: onSubmit clicked')
     if (this.existingAlarmClock) {
       // get hours and minutes for the date picker. the backend want integer for each
       this.newAlarmClock.hour = this.timePicker.getHours();
       this.newAlarmClock.minute = this.timePicker.getMinutes();
-      if (this.dayOfWeekChecked()){
-        console.log("Alarm clock already exist, updating it with val" + this.newAlarmClock);
+      if (this.dayOfWeekChecked()) {
+        console.log('Alarm clock already exist, updating it with val' + this.newAlarmClock);
         this.alarmClockService.updateAlarmClockById(this.newAlarmClock.id, this.newAlarmClock).subscribe(
           success => {
-            this.router.navigate(["alarms"]);
+            this.router.navigate(['alarms']);
           },
-          error => console.log("Error "+ error)
+          error => console.log('Error ' + error)
         );
-      }else{
+      } else {
         // show error
         this.popupComponent.add('danger', 'You must select at least one day of week');
       }
@@ -90,14 +90,14 @@ export class AlarmClockFormComponent implements OnInit {
       this.newAlarmClock.hour = this.timePicker.getHours();
       this.newAlarmClock.minute = this.timePicker.getMinutes();
       this.newAlarmClock.is_active = true;
-      if (this.dayOfWeekChecked()){
+      if (this.dayOfWeekChecked()) {
         this.alarmClockService.addAlarmClock(this.newAlarmClock).subscribe(
           success => {
-            this.router.navigate(["alarms"]);
+            this.router.navigate(['alarms']);
           },
-          error => console.log("Error " + error)
-        );;
-      }else{
+          error => console.log('Error ' + error)
+        ); ;
+      } else {
         this.popupComponent.add('danger', 'You must select at least one day of week');
       }
     }
@@ -105,8 +105,8 @@ export class AlarmClockFormComponent implements OnInit {
   }
 
   create_range(maxVal: number): number[] {
-    var x = [];
-    var i = 0;
+    let x = [];
+    let i = 0;
     while (x.push(i++) <= maxVal) {};
     return x;
   }
@@ -116,17 +116,17 @@ export class AlarmClockFormComponent implements OnInit {
     this.webradios = webradios;
   }
 
-  setExistingAlarmClock(alarmClock: AlarmClock){
+  setExistingAlarmClock(alarmClock: AlarmClock) {
     this.newAlarmClock = alarmClock;
     this.timePicker = new Date();
     this.timePicker.setHours(this.newAlarmClock.hour);
     this.timePicker.setMinutes(this.newAlarmClock.minute);
   }
 
-  dayOfWeekChecked(){
+  dayOfWeekChecked() {
     if (this.newAlarmClock.monday || this.newAlarmClock.tuesday || this.newAlarmClock.wednesday || this.newAlarmClock.thursday ||
-        this.newAlarmClock.friday || this.newAlarmClock.saturday || this.newAlarmClock.sunday){
-          console.log("day of week ok");
+        this.newAlarmClock.friday || this.newAlarmClock.saturday || this.newAlarmClock.sunday) {
+          console.log('day of week ok');
       return true;
     }
     return false;

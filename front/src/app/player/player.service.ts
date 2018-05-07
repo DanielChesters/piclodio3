@@ -13,7 +13,7 @@ export class PlayerService {
   constructor(private httpService: HttpClient) {}
 
   getPlayerStatus(): Observable < Player > {
-    return this.httpService.get<Player>(this.baseUrl + "/player/");
+    return this.httpService.get<Player>(this.baseUrl + '/player/');
   }
 
   updatePlayer(player: Player): Observable < Player > {
@@ -21,7 +21,7 @@ export class PlayerService {
     let headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-          var returnedPlayer = this.httpService.post<Player>(this.baseUrl + "/player/", body, {
+          let returnedPlayer = this.httpService.post<Player>(this.baseUrl + '/player/', body, {
         headers: headers
       });
     return returnedPlayer;

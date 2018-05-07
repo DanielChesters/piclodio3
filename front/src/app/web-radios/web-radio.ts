@@ -1,8 +1,8 @@
 export class WebRadio {
     id: number;
-    name: string = '';
-    url: string = '';
-    is_default: boolean = false;
+    name = '';
+    url = '';
+    is_default = false;
 
     constructor(values: Object = {}) {
         Object.assign(this, values);

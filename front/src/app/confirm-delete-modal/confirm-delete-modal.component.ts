@@ -1,4 +1,4 @@
-import {WebRadio} from "../web-radios/web-radio";
+import {WebRadio} from '../web-radios/web-radio';
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
@@ -18,12 +18,12 @@ export class ConfirmDeleteModalComponent {
 
   }
 
-  canceldeleteWebRadio(){
+  canceldeleteWebRadio() {
     this.modalConfirmDeleteIsVisible = false;
     this.onConfirm.emit(false);
   }
 
-  confirmDeleteWebRadio(){
+  confirmDeleteWebRadio() {
     this.modalConfirmDeleteIsVisible = false;
     this.onConfirm.emit(true);
 

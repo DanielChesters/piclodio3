@@ -15,9 +15,9 @@ export class OptionComponent implements OnInit {
   baseUrl: string = GlobalVariable.BASE_API_URL;
   currentVolume: Volume;
   currentBackup: Backup;
-  volumeLoaded: boolean = false;
+  volumeLoaded = false;
   public uploader: FileUploader = new FileUploader({
-    url: this.baseUrl + "/backup",
+    url: this.baseUrl + '/backup',
     method: 'POST',
     itemAlias: 'backup_file',
     queueLimit: 1,
@@ -84,7 +84,7 @@ export class OptionComponent implements OnInit {
    * The data contains a full path, the method will only keep the file name
    */
   setBackup(backup: Backup[]) {
-    console.log("Recevied backup: ");
+    console.log('Recevied backup: ');
     console.log(backup);
     if (typeof backup !== 'undefined' && backup.length > 0) {
       // the array is defined and has at least one element
@@ -112,7 +112,7 @@ export class OptionComponent implements OnInit {
       success => {
         this.refreshVolume();
       },
-      error => console.log("Error " + error)
+      error => console.log('Error ' + error)
     );
   }
 
@@ -130,7 +130,7 @@ export class OptionComponent implements OnInit {
       success => {
         this.refreshVolume();
       },
-      error => console.log("Error " + error)
+      error => console.log('Error ' + error)
     );
   }
 
