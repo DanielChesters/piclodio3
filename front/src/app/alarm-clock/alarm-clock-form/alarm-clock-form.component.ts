@@ -51,14 +51,17 @@ export class AlarmClockFormComponent implements OnInit {
           this.existingAlarmClock = false;
           this.timePicker = new Date();
           this.newAlarmClock.auto_stop_minutes = 0;
-          return
+
+          return;
         } else {
           console.log('get an id');
           // we have an ID, load the object from it
-          this.alarmClockService.getAlarmClockById(alarmClockId).subscribe(
-            this.setExistingAlarmClock.bind(this),
-            error => console.error('Error: ' + error),
-            () => console.log('Completed! Get an alarm ' + this.newAlarmClock.webradio));
+          this.alarmClockService.getAlarmClockById(alarmClockId)
+                        .subscribe(
+                            this.setExistingAlarmClock.bind(this),
+                            error => console.error('Error: ' + error),
+                            () => console.log('Completed! Get an alarm ' + this.newAlarmClock.webradio)
+                        );
         }
       });
 
@@ -96,7 +99,7 @@ export class AlarmClockFormComponent implements OnInit {
             this.router.navigate(['alarms']);
           },
           error => console.log('Error ' + error)
-        ); ;
+        );
       } else {
         this.popupComponent.add('danger', 'You must select at least one day of week');
       }
@@ -108,6 +111,7 @@ export class AlarmClockFormComponent implements OnInit {
     const x = [];
     let i = 0;
     while (x.push(i++) <= maxVal) {};
+
     return x;
   }
 
@@ -123,12 +127,14 @@ export class AlarmClockFormComponent implements OnInit {
     this.timePicker.setMinutes(this.newAlarmClock.minute);
   }
 
-  dayOfWeekChecked() {
+  dayOfWeekChecked(): boolean {
     if (this.newAlarmClock.monday || this.newAlarmClock.tuesday || this.newAlarmClock.wednesday || this.newAlarmClock.thursday ||
         this.newAlarmClock.friday || this.newAlarmClock.saturday || this.newAlarmClock.sunday) {
           console.log('day of week ok');
+
           return true;
     }
+
     return false;
   }
 

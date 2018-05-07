@@ -51,7 +51,7 @@ export class OptionComponent implements OnInit {
     // get the current backup file
     this.refreshBackup();
     // set CORS to *
-    this.uploader.onBeforeUploadItem =item => {
+    this.uploader.onBeforeUploadItem = item => {
       item.withCredentials = false;
     }
 

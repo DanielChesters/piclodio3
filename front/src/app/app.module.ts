@@ -10,7 +10,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule }   from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { ProgressbarModule } from 'ng2-bootstrap/progressbar';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
@@ -86,7 +86,14 @@ import { FileUploadModule } from 'ng2-file-upload';
       }
     ])
   ],
-  providers: [WebRadioService, AlarmClockService, SystemDateService, PlayerService, OptionService, {provide: LocationStrategy, useClass: HashLocationStrategy}],
+  providers: [
+          WebRadioService,
+          AlarmClockService,
+          SystemDateService,
+          PlayerService,
+          OptionService,
+          {provide: LocationStrategy, useClass: HashLocationStrategy}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
