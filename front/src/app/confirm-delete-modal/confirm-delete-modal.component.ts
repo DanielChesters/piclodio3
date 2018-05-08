@@ -2,31 +2,25 @@ import {WebRadio} from '../web-radios/web-radio';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-confirm-delete-modal',
-  templateUrl: './confirm-delete-modal.component.html',
-  styleUrls: ['./confirm-delete-modal.component.css']
+        selector: 'app-confirm-delete-modal',
+        templateUrl: './confirm-delete-modal.component.html',
+        styleUrls: ['./confirm-delete-modal.component.css']
 })
 export class ConfirmDeleteModalComponent {
 
-  @Input() message: String;
-  @Input() modalConfirmDeleteIsVisible: Boolean;
-  @Output() onConfirm = new EventEmitter<boolean>();
+        @Input() message: String;
+        @Input() modalConfirmDeleteIsVisible: Boolean;
+        @Output() onConfirm = new EventEmitter<boolean>();
 
-  constructor() { }
+        canceldeleteWebRadio(): void {
+                this.modalConfirmDeleteIsVisible = false;
+                this.onConfirm.emit(false);
+        }
 
-  ngOnInit() {
+        confirmDeleteWebRadio(): void {
+                this.modalConfirmDeleteIsVisible = false;
+                this.onConfirm.emit(true);
 
-  }
-
-  canceldeleteWebRadio() {
-    this.modalConfirmDeleteIsVisible = false;
-    this.onConfirm.emit(false);
-  }
-
-  confirmDeleteWebRadio() {
-    this.modalConfirmDeleteIsVisible = false;
-    this.onConfirm.emit(true);
-
-  }
+        }
 
 }

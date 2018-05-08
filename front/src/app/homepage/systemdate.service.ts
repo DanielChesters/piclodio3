@@ -1,4 +1,3 @@
-
 import {map} from 'rxjs/operators';
 import { GlobalVariable } from './../globals';
 import { Observable } from 'rxjs';
@@ -9,12 +8,12 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class SystemDateService {
 
-    baseUrl: string = GlobalVariable.BASE_API_URL;
+        baseUrl: string = GlobalVariable.BASE_API_URL;
 
-    constructor(private httpService: HttpClient) {}
+        constructor(private httpService: HttpClient) {}
 
-    // GET /alarmclocks
-    getSystemDate(): Observable < Date > {
-        return this.httpService.get<Date>(`{{ this.baseUrl }}/systemdate/`);
-    }
+        // GET /alarmclocks
+        getSystemDate(): Observable < Date > {
+                return this.httpService.get<Date>(`${this.baseUrl}/systemdate/`);
+        }
 }
