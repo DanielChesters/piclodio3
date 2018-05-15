@@ -7,23 +7,23 @@ import {} from 'jasmine';
 import { WebRadioFormComponent } from './web-radio-form.component';
 
 describe('WebRadioFormComponent', () => {
-  let component: WebRadioFormComponent;
-  let fixture: ComponentFixture<WebRadioFormComponent>;
+    let component: WebRadioFormComponent;
+    let fixture: ComponentFixture<WebRadioFormComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ WebRadioFormComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [ WebRadioFormComponent ]
+        })
+            .compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(WebRadioFormComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(WebRadioFormComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

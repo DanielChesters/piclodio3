@@ -27,71 +27,71 @@ import { TimepickerModule } from 'ng2-bootstrap/timepicker';
 import { FileUploadModule } from 'ng2-file-upload';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    WebRadiosComponent,
-    HomepageComponent,
-    AlarmClockComponent,
-    WebRadioFormComponent,
-    AlarmClockFormComponent,
-    ConfirmDeleteModalComponent,
-    OptionComponent,
-    PopupComponent
-  ],
-  imports: [
-    CollapseModule.forRoot(),
-    ProgressbarModule.forRoot(),
-    AlertModule.forRoot(),
-    TimepickerModule.forRoot(),
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    FileUploadModule,
-    RouterModule.forRoot([
-      {
-        path: '',
-        component: HomepageComponent
-      },
-      {
-        path: 'homepage',
-        component: HomepageComponent
-      },
-      {
-        path: 'webradios',
-        component: WebRadiosComponent
-      },
-      {
-        path: 'webradios/new',
-        component: WebRadioFormComponent
-      },
-      { path: 'webradios/:id',
-       component: WebRadioFormComponent
-      },
-      {
-        path: 'alarms',
-        component: AlarmClockComponent
-      },
-      {
-        path: 'alarms/new',
-        component: AlarmClockFormComponent
-      },
-      {
-        path: 'alarms/:id',
-        component: AlarmClockFormComponent
-      },
-      {
-        path: 'option',
-        component: OptionComponent
-      }
-    ])
-  ],
-  providers: [
-          WebRadioService,
-          AlarmClockService,
-          PlayerService,
-          OptionService,
-          {provide: LocationStrategy, useClass: HashLocationStrategy}
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        WebRadiosComponent,
+        HomepageComponent,
+        AlarmClockComponent,
+        WebRadioFormComponent,
+        AlarmClockFormComponent,
+        ConfirmDeleteModalComponent,
+        OptionComponent,
+        PopupComponent
+    ],
+    imports: [
+        CollapseModule.forRoot(),
+        ProgressbarModule.forRoot(),
+        AlertModule.forRoot(),
+        TimepickerModule.forRoot(),
+        BrowserModule,
+        FormsModule,
+        HttpClientModule,
+        FileUploadModule,
+        RouterModule.forRoot([
+            {
+                path: '',
+                component: HomepageComponent
+            },
+            {
+                path: 'homepage',
+                component: HomepageComponent
+            },
+            {
+                path: 'webradios',
+                component: WebRadiosComponent
+            },
+            {
+                path: 'webradios/new',
+                component: WebRadioFormComponent
+            },
+            { path: 'webradios/:id',
+                component: WebRadioFormComponent
+            },
+            {
+                path: 'alarms',
+                component: AlarmClockComponent
+            },
+            {
+                path: 'alarms/new',
+                component: AlarmClockFormComponent
+            },
+            {
+                path: 'alarms/:id',
+                component: AlarmClockFormComponent
+            },
+            {
+                path: 'option',
+                component: OptionComponent
+            }
+        ])
+    ],
+    providers: [
+        WebRadioService,
+        AlarmClockService,
+        PlayerService,
+        OptionService,
+        {provide: LocationStrategy, useClass: HashLocationStrategy}
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

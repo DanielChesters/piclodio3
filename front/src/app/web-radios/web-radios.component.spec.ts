@@ -6,23 +6,23 @@ import { DebugElement } from '@angular/core';
 import { WebRadiosComponent } from './web-radios.component';
 
 describe('WebRadiosComponent', () => {
-  let component: WebRadiosComponent;
-  let fixture: ComponentFixture<WebRadiosComponent>;
+    let component: WebRadiosComponent;
+    let fixture: ComponentFixture<WebRadiosComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ WebRadiosComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [ WebRadiosComponent ]
+        })
+            .compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(WebRadiosComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(WebRadiosComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

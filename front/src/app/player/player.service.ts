@@ -8,23 +8,23 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class PlayerService {
 
-        baseUrl: string = GlobalVariable.BASE_API_URL;
+    baseUrl: string = GlobalVariable.BASE_API_URL;
 
-        constructor(private httpService: HttpClient) {}
+    constructor(private httpService: HttpClient) {}
 
-        getPlayerStatus(): Observable < Player > {
-                return this.httpService.get<Player>(`${this.baseUrl}/player/`);
-        }
+    getPlayerStatus(): Observable < Player > {
+        return this.httpService.get<Player>(`${this.baseUrl}/player/`);
+    }
 
-        updatePlayer(player: Player): Observable < Player > {
-                const headers = new HttpHeaders({
-                        'Content-Type': 'application/json'
-                });
-                const returnedPlayer = this.httpService.post<Player>(`${this.baseUrl}/player/`, player, {
-                        headers
-                });
+    updatePlayer(player: Player): Observable < Player > {
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json'
+        });
+        const returnedPlayer = this.httpService.post<Player>(`${this.baseUrl}/player/`, player, {
+            headers
+        });
 
-                return returnedPlayer;
-        }
+        return returnedPlayer;
+    }
 
 }
