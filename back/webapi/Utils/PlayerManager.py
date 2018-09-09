@@ -1,5 +1,6 @@
 import threading
 import os
+from os import path
 import signal
 import gi
 gi.require_version("Gst", "1.0")
@@ -43,11 +44,11 @@ class PlayerManager(object):
 
     @classmethod
     def try_to_kill_external_player(cls):
-        if os.path.exists(PATH_PID):
-            pid_file = open(PATH_PID, 'r')
+        if path.exists(cls.PATH_PID):
+            pid_file = open(cls.PATH_PID, 'r')
             os.kill(int(pid_file.read()), signal.SIGNAL_SIGTERM)
             pid_file.close()
-            os.remove(PATH_PID)
+            os.remove(cls.PATH_PID)
 
 
 class ThreadTimeout(object):
