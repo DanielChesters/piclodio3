@@ -43,7 +43,7 @@ class PlayerManager(object):
 
     @classmethod
     def try_to_kill_external_player(cls):
-        if os.path.exist(PATH_PID):
+        if os.path.exists(PATH_PID):
             pid_file = open(PATH_PID, 'r')
             os.kill(int(pid_file.read()), signal.SIGNAL_SIGTERM)
             pid_file.close()
