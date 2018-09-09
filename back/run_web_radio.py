@@ -35,6 +35,11 @@ def is_url_valid(url):
         print("Failed to connect (timeout)")
         return False
 
+# save current PID in file
+path = '/tmp/piclodio_run.pid'
+file_pid = open(path, 'w')
+file_pid.write(str(os.getpid()))
+file_pid.close()
 
 # load django models
 project_path = os.path.dirname(os.path.realpath(__file__))
@@ -95,3 +100,6 @@ else:
         backup_mp3_callback.start()
     else:
         PlayerManager.play(url=current_script_path + os.sep + "sounds/no_backup_file.mp3", blocking_thread=True)
+
+
+os.remove(path)

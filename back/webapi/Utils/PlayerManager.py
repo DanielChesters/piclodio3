@@ -1,4 +1,6 @@
 import threading
+import os
+import signal
 import gi
 gi.require_version("Gst", "1.0")
 from time import sleep
@@ -11,12 +13,14 @@ class PlayerManager(object):
     """
     PLAYER = Gst.ElementFactory.make("playbin", "player")
     MAIN_LOOP = GObject.MainLoop()
+    PATH_PID = '/tmp/piclodio_run.pid'
 
     @classmethod
     def play(cls, url, blocking_thread=False):
         # stop playing if already running
         if cls.is_started():
             cls.stop()
+        cls.try_to_kill_external_player()
         cls.PLAYER.set_property("uri", url)
         cls.PLAYER.set_state(Gst.State.PLAYING)
         if blocking_thread :
@@ -27,6 +31,7 @@ class PlayerManager(object):
         """
         Stop playing
         """
+        cls.try_to_kill_external_player()
         cls.PLAYER.set_state(Gst.State.NULL)
         if cls.MAIN_LOOP.is_running :
             cls.MAIN_LOOP.quit()
@@ -35,6 +40,14 @@ class PlayerManager(object):
     def is_started(cls):
         state = cls.PLAYER.get_state(Gst.CLOCK_TIME_NONE)
         return state.state == Gst.State.PLAYING
+
+    @classmethod
+    def try_to_kill_external_player(cls):
+        if os.path.exist(PATH_PID):
+            pid_file = open(PATH_PID, 'r')
+            os.kill(int(pid_file.read()), signal.SIGNAL_SIGTERM)
+            pid_file.close()
+            os.remove(PATH_PID)
 
 
 class ThreadTimeout(object):
