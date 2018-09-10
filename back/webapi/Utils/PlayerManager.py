@@ -61,9 +61,9 @@ class ThreadTimeout(object):
             self.time_before_auto_kill = int(time_before_auto_kill)
         else:
             self.time_before_auto_kill = None
+
         # save current PID in file
-        path = path.join(os.getenv('XDG_RUNTIME_DIR'), 'piclodio.pid')
-        file_pid = open(path, 'w')
+        file_pid = open(PlayerManager.PATH_PID, 'w')
         file_pid.write(str(os.getpid()))
         file_pid.close()
 
