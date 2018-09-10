@@ -14,7 +14,7 @@ class PlayerManager(object):
     """
     PLAYER = Gst.ElementFactory.make("playbin", "player")
     MAIN_LOOP = GObject.MainLoop()
-    PATH_PID = '/tmp/piclodio_run.pid'
+    PATH_PID = path.join(os.getenv('XDG_RUNTIME_DIR'), 'piclodio.pid')
 
     @classmethod
     def play(cls, url, blocking_thread=False):
@@ -83,6 +83,8 @@ class ThreadTimeout(object):
         def auto_kill_thread():
             print("Auto kill thread started, will stop the web radio in %s minutes" % self.time_before_auto_kill)
             sleep(self.time_before_auto_kill*60)
+            if path.exists(PlayerManager.PATH_PID):
+                os.remove(PlayerManager.PATH_PID)
             PlayerManager.stop()
 
         # start a thread to play the web radio

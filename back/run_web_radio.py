@@ -7,6 +7,7 @@ E.g: python run_web_radio.py 12 20
 """
 import inspect
 import os
+from os import path
 import sys
 if sys.version_info >= (3, 0):
     from urllib.request import urlopen
@@ -36,8 +37,8 @@ def is_url_valid(url):
         return False
 
 # save current PID in file
-path = '/tmp/piclodio_run.pid'
-file_pid = open(path, 'w')
+path = path.join(os.getenv('XDG_RUNTIME_DIR'), 'piclodio.pid')
+file_pid = open(path, 'x')
 file_pid.write(str(os.getpid()))
 file_pid.close()
 
@@ -101,5 +102,3 @@ else:
     else:
         PlayerManager.play(url=current_script_path + os.sep + "sounds/no_backup_file.mp3", blocking_thread=True)
 
-
-os.remove(path)
