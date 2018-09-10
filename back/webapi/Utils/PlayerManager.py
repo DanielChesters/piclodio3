@@ -14,7 +14,7 @@ class PlayerManager(object):
     """
     PLAYER = Gst.ElementFactory.make("playbin", "player")
     MAIN_LOOP = GObject.MainLoop()
-    PATH_PID = path.join(os.getenv('XDG_RUNTIME_DIR'), 'piclodio.pid')
+    PATH_PID = path.join('/tmp', 'piclodio.pid')
 
     @classmethod
     def play(cls, url, blocking_thread=False):
