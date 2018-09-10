@@ -7,7 +7,6 @@ E.g: python run_web_radio.py 12 20
 """
 import inspect
 import os
-from os import path
 import sys
 if sys.version_info >= (3, 0):
     from urllib.request import urlopen
@@ -35,12 +34,6 @@ def is_url_valid(url):
     except urllib2.URLError:
         print("Failed to connect (timeout)")
         return False
-
-# save current PID in file
-path = path.join(os.getenv('XDG_RUNTIME_DIR'), 'piclodio.pid')
-file_pid = open(path, 'w')
-file_pid.write(str(os.getpid()))
-file_pid.close()
 
 # load django models
 project_path = os.path.dirname(os.path.realpath(__file__))
