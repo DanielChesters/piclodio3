@@ -46,9 +46,11 @@ class PlayerManager(object):
     def try_to_kill_external_player(cls):
         if path.exists(cls.PATH_PID):
             pid_file = open(cls.PATH_PID, 'r')
-            os.kill(int(pid_file.read()), signal.SIGTERM)
-            pid_file.close()
-            os.remove(cls.PATH_PID)
+            pid = int(pid_file.read())
+            pid_file,close()
+            if pid != os.getpid():
+                os.kill(pid, signal.SIGTERM)
+                os.remove(cls.PATH_PID)
 
 
 class ThreadTimeout(object):
