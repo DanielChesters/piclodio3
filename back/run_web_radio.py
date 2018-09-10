@@ -38,7 +38,7 @@ def is_url_valid(url):
 
 # save current PID in file
 path = path.join(os.getenv('XDG_RUNTIME_DIR'), 'piclodio.pid')
-file_pid = open(path, 'x')
+file_pid = open(path, 'w')
 file_pid.write(str(os.getpid()))
 file_pid.close()
 
