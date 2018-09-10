@@ -47,7 +47,7 @@ class PlayerManager(object):
         if path.exists(cls.PATH_PID):
             pid_file = open(cls.PATH_PID, 'r')
             pid = int(pid_file.read())
-            pid_file,close()
+            pid_file.close()
             if pid != os.getpid():
                 os.kill(pid, signal.SIGTERM)
                 os.remove(cls.PATH_PID)
