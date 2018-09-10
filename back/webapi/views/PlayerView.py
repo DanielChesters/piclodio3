@@ -7,6 +7,8 @@ from webapi.Utils.PlayerManager import PlayerManager
 from webapi.models import WebRadio
 from webapi.serializers.PlayerSerializer import PlayerManagerSerializer
 
+from os import path
+
 
 class PlayerStatus(APIView):
     permission_classes = (AllowAny,)
@@ -15,7 +17,7 @@ class PlayerStatus(APIView):
         """
         Get the Mplayer status
         """
-        if PlayerManager.is_started():
+        if PlayerManager.is_started() or path.exists(PlayerManager.PATH_PID):
             status = "on"
         else:
             status = "off"
